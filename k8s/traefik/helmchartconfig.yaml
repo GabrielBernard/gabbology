@@ -1,0 +1,12 @@
+# Applied manually at /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
+# See https://docs.k3s.io/helm for more information
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    ports:
+      web:
+        redirectTo: websecure

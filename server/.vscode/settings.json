@@ -1,0 +1,10 @@
+{
+    "files.watcherExclude": {
+        "target": true
+    },
+    "files.exclude": {
+        "target": true
+    },
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+}
