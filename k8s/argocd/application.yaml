@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gabbology
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: gabbology
+spec:
+  project: default
+
+  sources:
+    - repoURL: git@github.com:GabrielBernard/gabbology.git
+      targetRevision: cert-manager
+      path: k8s/cert-manager
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gabbology
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+
+  revisionHistoryLimit: 3
