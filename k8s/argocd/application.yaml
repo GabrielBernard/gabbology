@@ -12,7 +12,7 @@ spec:
 
   sources:
     - repoURL: git@github.com:GabrielBernard/gabbology.git
-      targetRevision: cert-manager
+      targetRevision: main
       path: k8s/cert-manager
 
   destination:

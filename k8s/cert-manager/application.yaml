@@ -1,0 +1,43 @@
+# cert-manager CRDs are managed outside of ArgoCD and Helm
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  labels:
+    name: cert-manager
+spec:
+  project: default
+  source:
+    repoURL: https://charts.jetstack.io
+    targetRevision: v1.11.1
+    chart: cert-manager
+    helm:
+      releaseName: cert-manager
+      values: |
+        installCRDs: false
+        replicaCount: 1
+        extraArgs:
+          - --dns01-recursive-nameservers=1.1.1.1:53,9.9.9.9:53
+          - --dns01-recursive-nameservers-only
+        # Do not inherit dns from the host machine
+        podDnsPolicy: None
+        # Inherit these nameservers, use public DNS
+        # used for Let's Encrypt DNS-01 challenge
+        podDnsConfig:
+          nameservers:
+            - "1.1.1.1"
+            - "9.9.9.9"
+      skipCrds: true
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+
+  revisionHistoryLimit: 3
