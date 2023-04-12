@@ -12,8 +12,12 @@ spec:
 
   sources:
     - repoURL: git@github.com:GabrielBernard/gabbology.git
-      targetRevision: main
+      targetRevision: lets-encrypt
       path: k8s/cert-manager
+
+    - repoURL: git@github.com:GabrielBernard/gabbology.git
+      targetRevision: lets-encrypt
+      path: k8s/gabbology
 
   destination:
     server: https://kubernetes.default.svc
