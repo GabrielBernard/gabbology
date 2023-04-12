@@ -15,7 +15,7 @@ spec:
     helm:
       releaseName: cert-manager
       values: |
-        installCRDs: false
+        installCRDs: true
         replicaCount: 1
         extraArgs:
           - --dns01-recursive-nameservers=1.1.1.1:53,9.9.9.9:53
@@ -28,7 +28,6 @@ spec:
           nameservers:
             - "1.1.1.1"
             - "9.9.9.9"
-      skipCrds: true
 
   destination:
     server: https://kubernetes.default.svc

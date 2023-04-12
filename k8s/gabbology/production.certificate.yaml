@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: local-gabbology-com
+  namespace: default
+spec:
+  secretName: local-gabbology-com-tls
+  issuerRef:
+    name: gabbology-production
+    kind: ClusterIssuer
+  commonName: "gabbology.com"
+  dnsNames:
+    - "gabbology.com"
