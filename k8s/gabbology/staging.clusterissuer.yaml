@@ -1,0 +1,19 @@
+# Needs the cloudflare token to be provision in advanced in the
+# namespace of the cluster where cert-manager is installed
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: gabbology-staging
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: gabriel.f.bernard@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+      - dns01:
+          cloudflare:
+            email: gabriel.f.bernard@gmail.com
+            apiTokenSecretRef:
+              name: cf-gabbology-token
+              key: cf-token

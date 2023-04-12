@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gabbology-production
+  namespace: default
+  labels:
+    name: gabbology-production
+spec:
+  tls:
+    - hosts:
+        - "gabbology.com"
+      secretName: local-gabbology-com-tls
+  rules:
+  - host: "gabbology.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: wip
+            port:
+              number: 80
