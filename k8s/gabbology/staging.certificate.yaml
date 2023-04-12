@@ -1,7 +1,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: local-gabbology-com
+  name: local-gabbology-com-staging
   namespace: default
 spec:
   secretName: local-gabbology-com-staging-tls
