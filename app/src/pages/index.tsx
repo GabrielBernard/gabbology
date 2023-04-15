@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24 font-sans">
-      <div className="z-10 flex w-full max-w-3xl justify-end gap-12 md:justify-start">
+      <div className="z-10 flex w-screen justify-end gap-12 p-6 sm:w-full sm:max-w-3xl sm:p-0 md:justify-start">
         <Image
           src="/containers.svg"
           alt="Containers"
@@ -76,7 +76,7 @@ export default function Home() {
           </ul>
         </div>
       </div>
-      <div className="flex max-w-3xl flex-col justify-center text-justify font-sans text-gray-800 dark:text-gray-200">
+      <div className="flex w-screen flex-col justify-center p-6 text-justify font-sans text-gray-800 dark:text-gray-200 sm:w-full sm:max-w-3xl sm:p-0">
         <h2 className="py-6 text-lg text-teal-700 dark:text-teal-500 sm:text-xl">
           What are you seeing?
         </h2>
@@ -180,7 +180,7 @@ export default function Home() {
           width={1024}
           height={512}
         />
-        <ol className="max-w-2xl list-decimal self-center">
+        <ol className="list-decimal self-center p-6 sm:max-w-2xl sm:p-0">
           <li>
             <a
               href="https://cert-manager.io/"
