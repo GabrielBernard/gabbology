@@ -25,15 +25,15 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="16"
-     inkscape:cx="7.59375"
-     inkscape:cy="23.15625"
+     inkscape:zoom="32"
+     inkscape:cx="19.03125"
+     inkscape:cy="7.796875"
      inkscape:window-width="1920"
      inkscape:window-height="1135"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg5" />
+     inkscape:current-layer="layer6" />
   <defs
      id="defs2">
     <linearGradient
@@ -600,7 +600,12 @@
        y="-0.39534211"
        transform="matrix(0.96029559,0.27898454,0,1,0,0)" />
     <path
-       style="fill:url(#linearGradient6509);fill-opacity:1;stroke:none;stroke-width:0.0331706;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#3365b4;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 2.8237878,2.3434276 -8e-7,3.1627256 2.0491368,-1.4692424 -0.077507,-3.039091 z"
+       id="path624"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="display:inline;fill:url(#linearGradient6509);fill-opacity:1;stroke:none;stroke-width:0.0331706;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="M 4.7791645,4.1605458 2.8237869,5.5061542 8.6330082,7.1938457 10.604638,5.8482387 Z"
        id="path2872-0"
        sodipodi:nodetypes="ccccc" />
