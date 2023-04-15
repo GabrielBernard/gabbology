@@ -1,14 +1,11 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24 font-sans">
       <div className="z-10 flex w-screen justify-end gap-12 p-6 sm:w-full sm:max-w-3xl sm:p-0 md:justify-start">
         <Image
-          src="/containers.svg"
+          src="/assets/containers.svg"
           alt="Containers"
           className="hidden dark:invert md:block"
           width={250}
@@ -24,7 +21,7 @@ export default function Home() {
               href="https://github.com/GabrielBernard/gabbology"
             >
               <Image
-                src="/github-mark/github-mark.svg"
+                src="/assets/github-mark/github-mark.svg"
                 alt="GitHub Logo"
                 className="aspect-square h-6 w-6 hover:rounded-full hover:bg-gray-400 sm:h-8 sm:w-8"
                 width={8}
@@ -36,7 +33,7 @@ export default function Home() {
               href="https://github.com/GabrielBernard/gabbology"
             >
               <Image
-                src="/github-mark/github-mark-white.svg"
+                src="/assets/github-mark/github-mark-white.svg"
                 alt="GitHub Logo"
                 className="aspect-square h-6 w-6 hover:rounded-full hover:bg-gray-800 sm:h-8 sm:w-8 "
                 width={8}
@@ -166,14 +163,14 @@ export default function Home() {
           .
         </p>
         <Image
-          src="diagram-light.svg"
+          src="/assets/diagram-light.svg"
           alt="Infrastructure Diagram"
           className="aspect-auto pb-6 dark:hidden"
           width={1024}
           height={512}
         />
         <Image
-          src="diagram-dark.svg"
+          src="/assets/diagram-dark.svg"
           alt="Infrastructure Diagram"
           className="hidden aspect-auto pb-6 dark:block"
           width={1024}
