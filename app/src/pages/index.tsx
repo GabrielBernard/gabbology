@@ -26,7 +26,7 @@ export default function Home() {
               <Image
                 src="/github-mark/github-mark.svg"
                 alt="GitHub Logo"
-                className="aspect-square h-6 w-6 sm:h-8 sm:w-8"
+                className="aspect-square h-6 w-6 hover:rounded-full hover:bg-gray-400 sm:h-8 sm:w-8"
                 width={8}
                 height={8}
               />
@@ -38,7 +38,7 @@ export default function Home() {
               <Image
                 src="/github-mark/github-mark-white.svg"
                 alt="GitHub Logo"
-                className="aspect-square h-6 w-6 sm:h-8 sm:w-8"
+                className="aspect-square h-6 w-6 hover:rounded-full hover:bg-gray-800 sm:h-8 sm:w-8 "
                 width={8}
                 height={8}
               />
@@ -154,7 +154,6 @@ export default function Home() {
             href="https://kubernetes.io/"
             className="text-sky-700 hover:underline dark:text-sky-600"
           >
-            {" "}
             Kubernetes
           </a>{" "}
           . All the code used for this project is accessible on my{" "}
@@ -203,7 +202,13 @@ export default function Home() {
             >
               Let&apos;s Encrypt
             </a>{" "}
-            asks for a prof of control with a DNS-01 challenge
+            asks for a prof of control with a{" "}
+            <a
+              href="https://letsencrypt.org/docs/challenge-types/#dns-01-challenge"
+              className="text-sky-700 hover:underline dark:text-sky-600"
+            >
+              DNS-01 challenge
+            </a>
           </li>
           <li>
             <a
@@ -222,8 +227,14 @@ export default function Home() {
             API
           </li>
           <li>
-            The signed certificate is used by Kubernetes when serving the
-            application
+            The signed certificate is used by{" "}
+            <a
+              href="https://kubernetes.io/"
+              className="text-sky-700 hover:underline dark:text-sky-600"
+            >
+              Kubernetes
+            </a>{" "}
+            when serving the application
           </li>
           <li>
             <a
