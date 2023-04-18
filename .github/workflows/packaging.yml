@@ -44,7 +44,7 @@ jobs:
         with:
           context: .
           file: docker/Dockerfile
-          platforms: linux/arm64
+          platforms: llinux/amd64,inux/arm64
           build-args: |
             ASSETS=app/public/assets
             NEXT_APP=app/.next
