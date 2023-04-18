@@ -50,5 +50,5 @@ jobs:
             NEXT_APP=app/.next
             SERVER_SRC=server
           push: false
-          tags: ${{ steps.meta.outputs.tag }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
