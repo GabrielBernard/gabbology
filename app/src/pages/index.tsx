@@ -1,124 +1,253 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="flex min-h-screen flex-col items-center p-24 font-sans">
+      <div className="z-10 flex w-screen justify-end gap-12 p-6 sm:w-full sm:max-w-3xl sm:p-0 md:justify-start">
+        <Image
+          src="/assets/containers.svg"
+          alt="Containers"
+          className="hidden dark:invert md:block"
+          width={250}
+          height={250}
+        />
+        <div className="flex flex-col">
+          <div className="flex items-center justify-between gap-2">
+            <h1 className="py-6 text-3xl font-semibold text-gray-800 dark:text-gray-300">
+              Gabbology
+            </h1>
+            <a
+              className="dark:hidden"
+              href="https://github.com/GabrielBernard/gabbology"
+            >
+              <Image
+                src="/assets/github-mark/github-mark.svg"
+                alt="GitHub Logo"
+                className="aspect-square h-6 w-6 hover:rounded-full hover:bg-gray-400 sm:h-8 sm:w-8"
+                width={8}
+                height={8}
+              />
+            </a>
+            <a
+              className="hidden dark:block"
+              href="https://github.com/GabrielBernard/gabbology"
+            >
+              <Image
+                src="/assets/github-mark/github-mark-white.svg"
+                alt="GitHub Logo"
+                className="aspect-square h-6 w-6 hover:rounded-full hover:bg-gray-800 sm:h-8 sm:w-8 "
+                width={8}
+                height={8}
+              />
+            </a>
+          </div>
+          <ul className="list-none self-end text-right text-sky-700 dark:text-sky-600">
+            <li>
+              <a className="hover:underline" href="https://k3s.io/">
+                K3s
+              </a>
+            </li>
+            <li>
+              <a className="hover:underline" href="https://cert-manager.io/">
+                cert-manager
+              </a>
+            </li>
+            <li>
+              <a className="hover:underline" href="https://letsencrypt.org/">
+                Let&apos;s Encrypt
+              </a>
+            </li>
+            <li>
+              <a className="hover:underline" href="https://www.cloudflare.com/">
+                CloudFlare
+              </a>
+            </li>
+            <li>
+              <a
+                className="hover:underline"
+                href="https://argoproj.github.io/cd/"
+              >
+                Argo CD
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
+      <div className="flex w-screen flex-col justify-center p-6 text-justify font-sans text-gray-800 dark:text-gray-200 sm:w-full sm:max-w-3xl sm:p-0">
+        <h2 className="py-6 text-lg text-teal-700 dark:text-teal-500 sm:text-xl">
+          What are you seeing?
+        </h2>
+        <p className="pb-6">
+          This page is served by a{" "}
+          <a
+            href="https://kubernetes.io/"
+            className="text-sky-700 hover:underline dark:text-sky-600"
+          >
+            {" "}
+            Kubernetes
+          </a>{" "}
+          cluster (
+          <a
+            href="https://k3s.io/"
+            className="text-sky-700 hover:underline dark:text-sky-600"
+          >
+            K3s
+          </a>
+          ) running on an{" "}
+          <a
+            href="https://aws.amazon.com/ec2/"
+            className="text-sky-700 hover:underline dark:text-sky-600"
+          >
+            AWS EC2 instance
+          </a>
+          . The certificate used by the cluster was issued by{" "}
+          <a
+            href="https://letsencrypt.org/"
+            className="text-sky-700 hover:underline dark:text-sky-600"
+          >
+            Let&apos;s Encrypt
+          </a>
+          and is being kept updated by{" "}
+          <a
+            href="https://cert-manager.io/"
+            className="text-sky-700 hover:underline dark:text-sky-600"
+          >
+            cert-manager
+          </a>
+          .
+        </p>
+        <p className="pb-6">
+          The goal of this project is to configure a{" "}
+          <a
+            href="https://kubernetes.io/"
+            className="text-sky-700 hover:underline dark:text-sky-600"
+          >
+            {" "}
+            Kubernetes
+          </a>{" "}
+          environment serving an application with an Ingress using a TLS
+          certificate signed by an officially trusted authority, in our case{" "}
+          <a
+            href="https://letsencrypt.org/"
+            className="text-sky-700 hover:underline dark:text-sky-600"
+          >
+            Let&apos;s Encrypt
+          </a>
+          .
+        </p>
+        <p className="pb-6">
+          While the learning process of using{" "}
+          <a
+            href="https://cert-manager.io/"
+            className="text-sky-700 hover:underline dark:text-sky-600"
+          >
+            cert-manager
+          </a>{" "}
+          to obtain a certificate signed by a trusted entity in itself was the
+          goal of the project, it is now used to host a single-page application
+          served by the cluster. The project will grow and will serve as a
+          showcase of my abilities and knowledge of{" "}
+          <a
+            href="https://kubernetes.io/"
+            className="text-sky-700 hover:underline dark:text-sky-600"
+          >
+            Kubernetes
+          </a>{" "}
+          . All the code used for this project is accessible on my{" "}
+          <a
+            href="https://github.com/GabrielBernard/gabbology"
+            className="text-sky-700 hover:underline dark:text-sky-600"
+          >
+            personnal GitHub account
+          </a>
+          .
+        </p>
         <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+          src="/assets/diagram-light.svg"
+          alt="Infrastructure Diagram"
+          className="aspect-auto pb-6 dark:hidden"
+          width={1024}
+          height={512}
         />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <Image
+          src="/assets/diagram-dark.svg"
+          alt="Infrastructure Diagram"
+          className="hidden aspect-auto pb-6 dark:block"
+          width={1024}
+          height={512}
+        />
+        <ol className="list-decimal self-center p-6 sm:max-w-2xl sm:p-0">
+          <li>
+            <a
+              href="https://cert-manager.io/"
+              className="text-sky-700 hover:underline dark:text-sky-600"
+            >
+              cert-manager
+            </a>{" "}
+            issues a certificate signing request to{" "}
+            <a
+              href="https://letsencrypt.org/"
+              className="text-sky-700 hover:underline dark:text-sky-600"
+            >
+              Let&apos;s Encrypt
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://letsencrypt.org/"
+              className="text-sky-700 hover:underline dark:text-sky-600"
+            >
+              Let&apos;s Encrypt
+            </a>{" "}
+            asks for a prof of control with a{" "}
+            <a
+              href="https://letsencrypt.org/docs/challenge-types/#dns-01-challenge"
+              className="text-sky-700 hover:underline dark:text-sky-600"
+            >
+              DNS-01 challenge
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://cert-manager.io/"
+              className="text-sky-700 hover:underline dark:text-sky-600"
+            >
+              cert-manager
+            </a>{" "}
+            responds to the challenge using the{" "}
+            <a
+              href="https://www.cloudflare.com/"
+              className="text-sky-700 hover:underline dark:text-sky-600"
+            >
+              CloudFlare
+            </a>{" "}
+            API
+          </li>
+          <li>
+            The signed certificate is used by{" "}
+            <a
+              href="https://kubernetes.io/"
+              className="text-sky-700 hover:underline dark:text-sky-600"
+            >
+              Kubernetes
+            </a>{" "}
+            when serving the application
+          </li>
+          <li>
+            <a
+              href="https://www.cloudflare.com/"
+              className="text-sky-700 hover:underline dark:text-sky-600"
+            >
+              CloudFlare
+            </a>{" "}
+            proxy requests, using the strict trusted certificate policy
+          </li>
+          <li>
+            Client&apos;s communicating with the server can expect full TLS
+            encryption
+          </li>
+        </ol>
       </div>
     </main>
-  )
+  );
 }
