@@ -19,10 +19,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '19'
-      - run: cd app
-      - run: npm ci
-      - run: npm run build
-      - run: cd ..
+      - run: |
+          cd app
+          npm ci
+          npm run build
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
