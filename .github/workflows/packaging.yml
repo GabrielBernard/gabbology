@@ -1,0 +1,54 @@
+name: package-server
+run-name: Package server
+
+on:
+  push:
+    branches: ['release', 'learn-actions']
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-package-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Build NextJS app
+        uses: actions/setup-node@v3
+        with:
+          node-version: '19'
+      - run: cd app
+      - run: npm ci
+      - run: npm run build
+      - run: cd ..
+      - name: Set up QEMU
+        uses: docker/setup-qemu-actions@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to ghcr.io
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: type=sha
+      - name: Build and push Docker image
+        uses: docker/build@v4
+        with:
+          context: .
+          file: docker/Dockerfile
+          platform: linux/arm64
+          build-args: |
+            ASSETS=app/public/assets
+            NEXT_APP=app/.next
+            SERVER_SRC=server
+          push: false
+          tags: ${{ steps.meta.outputs.tag }}
+          labels: ${{ steps.meta.outputs.labels }}
