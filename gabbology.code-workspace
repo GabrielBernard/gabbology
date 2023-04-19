@@ -7,6 +7,9 @@
       "path": ".vscode"
     },
     {
+      "path": ".github"
+    },
+    {
       "path": "app"
     },
     {

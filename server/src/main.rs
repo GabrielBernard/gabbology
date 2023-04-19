@@ -2,17 +2,33 @@ use std::path::PathBuf;
 
 use axum::Router;
 use clap::Parser;
-use tower_http::services::{ServeDir, ServeFile};
+use tower_http::{
+    services::{ServeDir, ServeFile},
+    trace::TraceLayer,
+};
+use tracing_subscriber::{prelude::__tracing_subscriber_SubscriberExt, util::SubscriberInitExt};
 
 mod cli;
+
+const ENV_LOG: &str = "GABBOLOGY_LOG";
 
 #[tokio::main]
 async fn main() {
     let args = cli::Arguments::parse();
 
+    tracing_subscriber::registry()
+        .with(
+            tracing_subscriber::EnvFilter::try_from_env(ENV_LOG)
+                .unwrap_or_else(|_| "gabbology_server=debug,http_tower=debug".into()),
+        )
+        .with(tracing_subscriber::fmt::layer())
+        .init();
+
+    tracing::info!("listening on port {}", args.port);
     axum::Server::bind(&format!("0.0.0.0:{}", args.port).parse().unwrap())
         .serve(
             using_serve_dir_with_assets_fallback(args.next_path, args.assets_path)
+                .layer(TraceLayer::new_for_http())
                 .into_make_service(),
         )
         .await
