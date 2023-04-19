@@ -49,6 +49,6 @@ jobs:
             ASSETS=app/public/assets
             NEXT_APP=app/.next
             SERVER_SRC=server
-          push: false
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
