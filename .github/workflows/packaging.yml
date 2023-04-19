@@ -1,6 +1,9 @@
 name: package-server
 run-name: Package server
 
+permissions:
+  packages: write
+
 on:
   push:
     branches: ['release', 'learn-actions']
