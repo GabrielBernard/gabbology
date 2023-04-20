@@ -7,7 +7,7 @@ metadata:
   namespace: default
   labels:
     app.kubernetes.io/name: gabbology
-    app.kubernetes.io/version: sha-473130c
+    app.kubernetes.io/version: sha-859bf03
     app.kubernetes.io/component: server
     app.kubernetes.io/part-of: gabbology
 spec:
@@ -20,13 +20,13 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: gabbology
-        app.kubernetes.io/version: sha-473130c
+        app.kubernetes.io/version: sha-859bf03
         app.kubernetes.io/component: server
         app.kubernetes.io/part-of: gabbology
     spec:
       containers:
       - name: gabbology
-        image: ghcr.io/gabrielbernard/gabbology:sha-473130c
+        image: ghcr.io/gabrielbernard/gabbology:sha-859bf03
         resources:
           limits:
             memory: "512Mi"

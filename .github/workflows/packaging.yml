@@ -7,6 +7,15 @@ permissions:
 on:
   push:
     branches: ['main']
+    paths:
+      - 'app/**'
+      - '!app/.vscode/**'
+      - '!app/.gitignore'
+      - '!app/README.md'
+      - 'server/**'
+      - '!server/.vscode/**'
+      - '!server/.gitignore'
+      - '!server/README.md'
 
 env:
   REGISTRY: ghcr.io
