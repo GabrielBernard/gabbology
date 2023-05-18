@@ -6,13 +6,11 @@ COPY ${SERVER_SRC} server
 RUN cd server \
     && cargo build --release
 
-FROM debian:bullseye-slim
+FROM gcr.io/distroless/cc
 ARG NEXT_APP
 ARG ASSETS
-RUN mkdir -p /opt/gabbology
-WORKDIR /opt/gabbology
-COPY --from=builder /build/server/target/release/gabbology-server .
-COPY ${NEXT_APP} ./.next
-COPY ${ASSETS} ./assets
+COPY --from=builder /build/server/target/release/gabbology-server /opt/gabbology/gabbology-server
+COPY ${NEXT_APP} /opt/gabbology/.next
+COPY ${ASSETS} /opt/gabbology/assets
 
 ENTRYPOINT [ "/opt/gabbology/gabbology-server", "--assets-path", "/opt/gabbology/assets", "--next-path", "/opt/gabbology/.next" ]
