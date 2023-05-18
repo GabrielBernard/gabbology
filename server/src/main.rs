@@ -1,11 +1,12 @@
 use std::path::PathBuf;
 
-use axum::Router;
+use axum::{http::Request, Router};
 use clap::Parser;
 use tower_http::{
     services::{ServeDir, ServeFile},
     trace::TraceLayer,
 };
+use tracing::Span;
 use tracing_subscriber::{prelude::__tracing_subscriber_SubscriberExt, util::SubscriberInitExt};
 
 mod cli;
@@ -19,7 +20,7 @@ async fn main() {
     tracing_subscriber::registry()
         .with(
             tracing_subscriber::EnvFilter::try_from_env(ENV_LOG)
-                .unwrap_or_else(|_| "gabbology_server=debug,http_tower=debug".into()),
+                .unwrap_or_else(|_| "gabbology_server=info,tower_http=info".into()),
         )
         .with(tracing_subscriber::fmt::layer())
         .init();
@@ -28,7 +29,11 @@ async fn main() {
     axum::Server::bind(&format!("0.0.0.0:{}", args.port).parse().unwrap())
         .serve(
             using_serve_dir_with_assets_fallback(args.next_path, args.assets_path)
-                .layer(TraceLayer::new_for_http())
+                .layer(TraceLayer::new_for_http().on_request(
+                    |request: &Request<_>, _span: &Span| {
+                        tracing::info!("{} {}", request.method(), request.uri())
+                    },
+                ))
                 .into_make_service(),
         )
         .await
