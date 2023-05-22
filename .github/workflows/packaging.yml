@@ -8,10 +8,12 @@ on:
   push:
     branches: ['main']
     paths:
+      - '.github/workflows/**'
       - 'app/**'
       - '!app/.vscode/**'
       - '!app/.gitignore'
       - '!app/README.md'
+      - 'docker/**'
       - 'server/**'
       - '!server/.vscode/**'
       - '!server/.gitignore'
@@ -20,10 +22,11 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  CARGO_NET_GIT_FETCH_WITH_CLI: true
 
 jobs:
   build-and-package-server:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -31,10 +34,43 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '19'
-      - run: |
+      - name: Build NextJS app
+        run: |
           cd app
           npm ci
           npm run build
+      - name: Install arm64 linker, tools and libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ gcc-aarch64-linux-gnu libc6-dev-arm64-cross
+      - name: Update Rust toolchain
+        run: |
+          rustup update
+          rustup component add clippy rustfmt
+          rustup target add aarch64-unknown-linux-gnu
+      - name: Rust Toolchain info
+        run: |
+          cargo --version --verbose
+          rustc --version
+          cargo clippy --version
+      - name: Lint server
+        run: |
+          cd server
+          cargo fmt -- --check
+          cargo clippy -- -D warnings
+      - name: Test server
+        run: |
+          cd server
+          cargo check
+          cargo test --all
+      - name: Build server
+        env:
+          CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
+          CC_aarch64_unknown_linux_gnu: aarch64-linux-gnu-gcc
+          CXX_aarch64_unknown_linux_gnu: aarch64-linux-gnu-g++
+        run: |
+          cd server
+          cargo build --release --target aarch64-unknown-linux-gnu
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -56,11 +92,11 @@ jobs:
         with:
           context: .
           file: docker/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/arm64
           build-args: |
             ASSETS=app/public/assets
             NEXT_APP=app/.next
-            SERVER_SRC=server
+            GABBOLOGY_SERVER=server/target/aarch64-unknown-linux-gnu/release/gabbology-server
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
