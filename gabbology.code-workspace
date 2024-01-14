@@ -24,6 +24,9 @@
   ],
   "settings": {
     "editor.formatOnSave": true,
+    "files.associations": {
+      "**/app/**/*.css": "tailwindcss"
+    },
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     "files.watcherExclude": {

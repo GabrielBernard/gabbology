@@ -1,4 +1,4 @@
-FROM gcr.io/distroless/cc-debian11
+FROM gcr.io/distroless/cc-debian12
 
 ARG NEXT_APP
 ARG ASSETS
