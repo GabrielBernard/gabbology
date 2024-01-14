@@ -1,30 +1,8 @@
-import { IconButton, ThemeProvider, Tooltip, createTheme } from '@mui/material'
-import { lime, purple } from '@mui/material/colors'
+import { MdDarkMode, MdLightMode } from 'react-icons/md'
 import { useEffect, useState } from 'react'
 
-import DarkModeIcon from '@mui/icons-material/DarkMode'
-import LightModeIcon from '@mui/icons-material/LightMode'
-
-// const lime = {
-//   main: '#194D33',
-//   light: '#42a5f5',
-//   dark: '#DB3E00',
-//   contrastText: '#fff',
-// }
-
-// const purple = {
-//   main: '#F78DA7',
-//   light: '#42a5f5',
-//   dark: '#1565c0',
-//   contrastText: '#fff',
-// }
-
-const theme = createTheme({
-  palette: {
-    primary: lime,
-    secondary: purple,
-  },
-})
+// import { MdDarkMode } from 'react-icons/md'
+// import { MdLightMode } from 'react-icons/md'
 
 export default function App() {
   const [darkTheme, setDarkTheme] = useState(false)
@@ -38,26 +16,27 @@ export default function App() {
   }, [darkTheme])
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className='h-screen bg-white dark:bg-black'>
-        <Tooltip title={darkTheme ? 'Switch to Light' : 'Switch to Dark'}>
-          <IconButton
-            className='dark:text-white'
-            color={darkTheme ? 'primary' : 'secondary'}
-            aria-label={darkTheme ? 'toggle dark' : 'toggle light'}
-            onClick={() => {
-              setDarkTheme(!darkTheme)
-            }}
-          >
-            {darkTheme ? (
-              <LightModeIcon></LightModeIcon>
-            ) : (
-              <DarkModeIcon></DarkModeIcon>
-            )}
-          </IconButton>
-        </Tooltip>
+    <div className='h-screen bg-white dark:bg-black'>
+      <div className='group relative flex justify-center'>
+        <button
+          className='rounded-lg bg-blue-300 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-400 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800'
+          aria-label={darkTheme ? 'toggle dark' : 'toggle light'}
+          onClick={() => {
+            setDarkTheme(!darkTheme)
+          }}
+        >
+          {darkTheme ? (
+            <MdLightMode color='white' />
+          ) : (
+            <MdDarkMode color='black' />
+          )}
+        </button>
+        <span className='absolute top-10 scale-0 rounded bg-gray-800 p-2 text-xs text-white group-hover:scale-100'>
+          {darkTheme ? 'Light Mode' : 'Dark Mode'}
+        </span>
       </div>
-    </ThemeProvider>
+    </div>
+
     //     <main className='my-10 flex min-h-screen flex-col px-24 font-sans'>
     //       <div className='flex overflow-hidden'>
     //         <img
