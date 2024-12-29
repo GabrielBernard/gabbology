@@ -4,7 +4,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gabbology
-  namespace: default
   labels:
     app.kubernetes.io/name: gabbology
     app.kubernetes.io/version: sha-cb95aaf

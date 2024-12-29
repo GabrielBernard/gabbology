@@ -9,4 +9,5 @@ spec:
   valuesContent: |-
     ports:
       web:
-        redirectTo: websecure
+        redirectTo:
+          port: websecure
