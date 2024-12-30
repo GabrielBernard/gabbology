@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer base {
+  h2 {
+    @apply py-6 text-lg text-teal-700 sm:text-xl dark:text-teal-500;
+  }
+  a {
+    @apply text-sky-700 hover:underline dark:text-sky-600;
+  }
+  p {
+    @apply pb-6;
+  }
+  ol {
+    @apply list-decimal self-center p-6 sm:max-w-2xl sm:p-0;
+  }
+}

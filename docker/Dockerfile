@@ -1,11 +1,13 @@
-FROM gcr.io/distroless/cc-debian11
+FROM scratch
 
-ARG NEXT_APP
-ARG ASSETS
-ARG GABBOLOGY_SERVER
+ARG STATIC
+ARG GABBOLOGY_SERVER_TARGET
+ARG TARGETPLATFORM
 
-COPY ${NEXT_APP} /opt/gabbology/.next
-COPY ${ASSETS} /opt/gabbology/assets
-COPY ${GABBOLOGY_SERVER} /opt/gabbology/gabbology-server
+COPY ${STATIC} /opt/gabbology/static
+COPY ${GABBOLOGY_SERVER_TARGET}/${TARGETPLATFORM}/release/gabbology-server /opt/gabbology/gabbology-server
 
-ENTRYPOINT [ "/opt/gabbology/gabbology-server", "--assets-path", "/opt/gabbology/assets", "--next-path", "/opt/gabbology/.next" ]
+# Random, high number, user
+USER 48749
+
+ENTRYPOINT [ "/opt/gabbology/gabbology-server", "--assets-path", "/opt/gabbology/static" ]
