@@ -7,14 +7,16 @@ ARG KUBECTL_VERSION=1.31.0
 
 # Preping the dev container
 RUN apt update \
-  && apt install -y sudo gnupg2 \
+  && apt install -y sudo gnupg2 g++ gcc-aarch64-linux-gnu libc6-dev-arm64-cross \
   && groupadd -g ${UID} ${USER} \
   && useradd -m -u ${UID} -g ${UID} ${USER} -s /bin/bash \
   && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
-  && echo "source /usr/share/bash-completion/completions/git" >> /home/dev/.bashrc
-
-# Install rust component
-RUN rustup component add clippy rustfmt
+  && echo "source /usr/share/bash-completion/completions/git" >> /home/dev/.bashrc \
+  && apt-get clean \
+  # Install rust component
+  && rustup component add clippy rustfmt \
+  # Install arm64 musl rust target
+  && rustup target add aarch64-unknown-linux-musl
 
 # Install Node based on https://hub.docker.com/_/node
 ENV NODE_VERSION 22.12.0

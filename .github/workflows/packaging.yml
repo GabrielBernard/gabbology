@@ -47,7 +47,7 @@ jobs:
         run: |
           rustup update
           rustup component add clippy rustfmt
-          rustup target add aarch64-unknown-linux-gnu
+          rustup target add aarch64-unknown-linux-musl
       - name: Rust Toolchain info
         run: |
           cargo --version --verbose
@@ -65,12 +65,12 @@ jobs:
           cargo test --all
       - name: Build server
         env:
-          CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
+          CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-unknown-linux-musl
           CC_aarch64_unknown_linux_gnu: aarch64-linux-gnu-gcc
           CXX_aarch64_unknown_linux_gnu: aarch64-linux-gnu-g++
         run: |
           cd server
-          cargo build --release --target aarch64-unknown-linux-gnu
+          cargo build --release --target aarch64-unknown-linux-musl
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -96,7 +96,7 @@ jobs:
           build-args: |
             ASSETS=app/public/assets
             NEXT_APP=app/.next
-            GABBOLOGY_SERVER=server/target/aarch64-unknown-linux-gnu/release/gabbology-server
+            GABBOLOGY_SERVER=server/target/aarch64-unknown-linux-musl/release/gabbology-server
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
