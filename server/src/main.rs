@@ -26,18 +26,23 @@ async fn main() {
         .init();
 
     tracing::info!("listening on port {}", args.port);
-    axum::Server::bind(&format!("0.0.0.0:{}", args.port).parse().unwrap())
-        .serve(
-            using_serve_dir_with_assets_fallback(args.next_path, args.assets_path)
-                .layer(TraceLayer::new_for_http().on_request(
-                    |request: &Request<_>, _span: &Span| {
-                        tracing::info!("{} {}", request.method(), request.uri())
-                    },
-                ))
-                .into_make_service(),
-        )
+
+    let listener = tokio::net::TcpListener::bind(&format!("0.0.0.0:{}", args.port))
         .await
         .unwrap();
+
+    axum::serve(
+        listener,
+        using_serve_dir_with_assets_fallback(args.next_path, args.assets_path)
+            .layer(
+                TraceLayer::new_for_http().on_request(|request: &Request<_>, _span: &Span| {
+                    tracing::info!("{} {}", request.method(), request.uri())
+                }),
+            )
+            .into_make_service(),
+    )
+    .await
+    .unwrap();
 }
 
 fn using_serve_dir_with_assets_fallback(next_path: PathBuf, assets: PathBuf) -> Router {

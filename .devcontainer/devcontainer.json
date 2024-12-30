@@ -6,8 +6,8 @@
     "vscode": {
       "extensions": [
         "rust-lang.rust-analyzer",
-        "bungcip.better-toml",
-        "serayuzgur.crates",
+        "tamasfe.even-better-toml",
+        "fill-labs.dependi",
         "mhutchie.git-graph",
         "eamodio.gitlens",
         "ms-azuretools.vscode-docker",
