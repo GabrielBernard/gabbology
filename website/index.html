@@ -6,9 +6,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>gabbology</title>
   </head>
-  <body>
-    <div id="app"></div>
-    <h1 class="text-2xl font-bold underline">Hello World from index.html</h1>
+  <body class="my-10 flex min-h-screen flex-col items-center px-24 font-sans">
+    <div
+      class="z-10 flex w-screen items-end justify-end gap-4 pr-6 sm:w-full sm:max-w-3xl sm:gap-12 sm:p-0 md:items-start md:justify-start"
+    >
+      <img
+        alt="Containers"
+        loading="lazy"
+        width="250"
+        height="250"
+        decoding="async"
+        data-nimg="1"
+        class="h-full w-24 md:h-64 md:w-64 dark:invert"
+        style="color: transparent"
+        src="/assets/containers.svg"
+      />
+      <div class="flex flex-col">
+        <div class="flex items-center justify-between gap-2">
+          <h1
+            class="py-6 text-3xl font-semibold text-gray-800 dark:text-gray-300"
+          >
+            Gabbology
+          </h1>
+          <a
+            class="hidden dark:block"
+            href="https://github.com/GabrielBernard/gabbology"
+          >
+            <img
+              alt="GitHub Logo"
+              loading="lazy"
+              width="8"
+              height="8"
+              decoding="async"
+              data-nimg="1"
+              class="aspect-square h-6 w-6 hover:rounded-full hover:bg-gray-800 sm:h-8 sm:w-8"
+              style="color: transparent"
+              src="/assets/images/github-mark/github-mark-white.svg"
+            />
+          </a>
+        </div>
+        <ul
+          class="list-none self-end text-right text-sky-700 dark:text-sky-600"
+        >
+          <li><a class="hover:underline" href="https://k3s.io/">K3s</a></li>
+          <li>
+            <a class="hover:underline" href="https://cert-manager.io/"
+              >cert-manager</a
+            >
+          </li>
+          <li>
+            <a class="hover:underline" href="https://letsencrypt.org/"
+              >Let's Encrypt</a
+            >
+          </li>
+          <li>
+            <a class="hover:underline" href="https://www.cloudflare.com/"
+              >CloudFlare</a
+            >
+          </li>
+          <li>
+            <a class="hover:underline" href="https://argoproj.github.io/cd/"
+              >Argo CD</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

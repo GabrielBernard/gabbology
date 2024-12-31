@@ -2,9 +2,6 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "runArgs": [
-    "--network=host"
-  ],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -23,5 +20,8 @@
     }
   },
   "postAttachCommand": "chown $USER:$USER -R .",
-  "containerUser": "dev"
+  "containerUser": "dev",
+  "containerEnv": {
+    "ASSETS_PATH": "/workspaces/gabbology/website/dist"
+  }
 }

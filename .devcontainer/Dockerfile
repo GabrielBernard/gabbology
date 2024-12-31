@@ -16,7 +16,9 @@ RUN apt update \
   # Install rust component
   && rustup component add clippy rustfmt \
   # Install arm64 musl rust target
-  && rustup target add aarch64-unknown-linux-musl
+  && rustup target add aarch64-unknown-linux-musl \
+  # cargo watch
+  && cargo install cargo-watch
 
 # Install Node based on https://hub.docker.com/_/node
 ENV NODE_VERSION 22.12.0
