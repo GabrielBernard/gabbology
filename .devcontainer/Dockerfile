@@ -16,9 +16,7 @@ RUN apt update \
   # Install rust component
   && rustup component add clippy rustfmt \
   # Install arm64 musl rust target
-  && rustup target add aarch64-unknown-linux-musl \
-  # cargo watch
-  && cargo install cargo-watch
+  && rustup target add aarch64-unknown-linux-musl
 
 # Install Node based on https://hub.docker.com/_/node
 ENV NODE_VERSION 22.12.0
@@ -92,3 +90,7 @@ RUN apt-get update \
   && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | tee /etc/apt/sources.list.d/helm-stable-debian.list \
   && apt-get update \
   && apt-get install helm
+
+USER ${USER}
+
+RUN cargo install cargo-watch

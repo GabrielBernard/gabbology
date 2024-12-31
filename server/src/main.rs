@@ -2,10 +2,7 @@ use std::path::PathBuf;
 
 use axum::{http::Request, Router};
 use clap::Parser;
-use tower_http::{
-    services::ServeDir,
-    trace::TraceLayer,
-};
+use tower_http::{services::ServeDir, trace::TraceLayer};
 use tracing::Span;
 use tracing_subscriber::{prelude::__tracing_subscriber_SubscriberExt, util::SubscriberInitExt};
 
@@ -15,6 +12,11 @@ const ENV_LOG: &str = "GABBOLOGY_LOG";
 
 #[tokio::main]
 async fn main() {
+    // println!("{}", env!("CARGO_PKG_VERSION"));
+    // println!("{}", env!("CARGO_PKG_VERSION_MAJOR"));
+    // println!("{}", env!("CARGO_PKG_VERSION_MINOR"));
+    // println!("{}", env!("CARGO_PKG_VERSION_PATCH"));
+    // println!("{}", env!("CARGO_PKG_VERSION_PRE"));
     let args = cli::Arguments::parse();
 
     tracing_subscriber::registry()
@@ -58,10 +60,9 @@ fn using_serve_dir_with_assets_fallback(assets: PathBuf) -> Router {
 
     // let favicon = ServeFile::new(assets.join("favicon.ico"));
 
-    Router::new()
-        .nest_service("/", assets_dir)
-        // .nest_service("/assets", assets_dir)
-        // .nest_service("/_next", serve_next_dir)
-        // .nest_service("/favicon.ico", favicon)
-        // .fallback_service(not_found)
+    Router::new().nest_service("/", assets_dir)
+    // .nest_service("/assets", assets_dir)
+    // .nest_service("/_next", serve_next_dir)
+    // .nest_service("/favicon.ico", favicon)
+    // .fallback_service(not_found)
 }

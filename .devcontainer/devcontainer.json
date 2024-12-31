@@ -22,6 +22,6 @@
   "postAttachCommand": "chown $USER:$USER -R .",
   "containerUser": "dev",
   "containerEnv": {
-    "ASSETS_PATH": "/workspaces/gabbology/website/dist"
+    "GABBOLOGY_SERVER_ASSETS_PATH": "/workspaces/gabbology/website/dist"
   }
 }
