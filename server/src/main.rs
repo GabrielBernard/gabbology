@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use axum::{http::Request, Router};
 use clap::Parser;
 use tower_http::{
-    services::{ServeDir, ServeFile},
+    services::ServeDir,
     trace::TraceLayer,
 };
 use tracing::Span;
@@ -33,7 +33,7 @@ async fn main() {
 
     axum::serve(
         listener,
-        using_serve_dir_with_assets_fallback(args.next_path, args.assets_path)
+        using_serve_dir_with_assets_fallback(args.assets_path)
             .layer(
                 TraceLayer::new_for_http().on_request(|request: &Request<_>, _span: &Span| {
                     tracing::info!("{} {}", request.method(), request.uri())
@@ -45,23 +45,23 @@ async fn main() {
     .unwrap();
 }
 
-fn using_serve_dir_with_assets_fallback(next_path: PathBuf, assets: PathBuf) -> Router {
-    let not_found = ServeFile::new(next_path.join("server/pages/404.html"));
+fn using_serve_dir_with_assets_fallback(assets: PathBuf) -> Router {
+    // let not_found = ServeFile::new(next_path.join("server/pages/404.html"));
 
-    let serve_next_dir = ServeDir::new(next_path.clone());
+    // let serve_next_dir = ServeDir::new(next_path.clone());
 
-    let serve_index = ServeDir::new(next_path.join("server/pages"))
-        .append_index_html_on_directories(true)
-        .not_found_service(not_found.clone());
+    // let serve_index = ServeDir::new(next_path.join("server/pages"))
+    //     .append_index_html_on_directories(true)
+    //     .not_found_service(not_found.clone());
 
-    let assets_dir = ServeDir::new(assets.clone());
+    let assets_dir = ServeDir::new(assets.clone()).append_index_html_on_directories(true);
 
-    let favicon = ServeFile::new(assets.join("favicon.ico"));
+    // let favicon = ServeFile::new(assets.join("favicon.ico"));
 
     Router::new()
-        .nest_service("/", serve_index)
-        .nest_service("/assets", assets_dir)
-        .nest_service("/_next", serve_next_dir)
-        .nest_service("/favicon.ico", favicon)
-        .fallback_service(not_found)
+        .nest_service("/", assets_dir)
+        // .nest_service("/assets", assets_dir)
+        // .nest_service("/_next", serve_next_dir)
+        // .nest_service("/favicon.ico", favicon)
+        // .fallback_service(not_found)
 }
