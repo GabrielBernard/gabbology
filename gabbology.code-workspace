@@ -10,9 +10,6 @@
       "path": ".github"
     },
     {
-      "path": "app"
-    },
-    {
       "path": "docker"
     },
     {
@@ -20,10 +17,14 @@
     },
     {
       "path": "server"
-    }
+    },
+    {
+      "path": "website"
+    },
   ],
   "settings": {
     "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     "files.watcherExclude": {
