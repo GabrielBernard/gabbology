@@ -12,11 +12,6 @@ const ENV_LOG: &str = "GABBOLOGY_LOG";
 
 #[tokio::main]
 async fn main() {
-    // println!("{}", env!("CARGO_PKG_VERSION"));
-    // println!("{}", env!("CARGO_PKG_VERSION_MAJOR"));
-    // println!("{}", env!("CARGO_PKG_VERSION_MINOR"));
-    // println!("{}", env!("CARGO_PKG_VERSION_PATCH"));
-    // println!("{}", env!("CARGO_PKG_VERSION_PRE"));
     let args = cli::Arguments::parse();
 
     tracing_subscriber::registry()
@@ -48,21 +43,7 @@ async fn main() {
 }
 
 fn using_serve_dir_with_assets_fallback(assets: PathBuf) -> Router {
-    // let not_found = ServeFile::new(next_path.join("server/pages/404.html"));
-
-    // let serve_next_dir = ServeDir::new(next_path.clone());
-
-    // let serve_index = ServeDir::new(next_path.join("server/pages"))
-    //     .append_index_html_on_directories(true)
-    //     .not_found_service(not_found.clone());
-
     let assets_dir = ServeDir::new(assets.clone()).append_index_html_on_directories(true);
 
-    // let favicon = ServeFile::new(assets.join("favicon.ico"));
-
-    Router::new().nest_service("/", assets_dir)
-    // .nest_service("/assets", assets_dir)
-    // .nest_service("/_next", serve_next_dir)
-    // .nest_service("/favicon.ico", favicon)
-    // .fallback_service(not_found)
+    Router::new().fallback_service(assets_dir)
 }
