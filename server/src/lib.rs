@@ -1,9 +1,15 @@
-use askama::Template;
+use std::path::PathBuf;
 
-#[derive(Template)]
-#[template(path = "index.html")]
-pub struct IndexTemplate {}
+use axum::{routing::get, Router};
+use tower_http::services::ServeDir;
 
-#[derive(Template)]
-#[template(path = "test.html")]
-pub struct TestTemplate {}
+pub mod routing;
+pub mod templates;
+
+pub fn app(assets: PathBuf) -> Router {
+    let assets_dir = ServeDir::new(assets.clone());
+
+    Router::new()
+        .route("/", get(routing::about))
+        .fallback_service(assets_dir)
+}
