@@ -15,7 +15,8 @@
         "ms-kubernetes-tools.vscode-kubernetes-tools",
         "dbaeumer.vscode-eslint",
         "amatiasq.sort-imports",
-        "bradlc.vscode-tailwindcss"
+        "bradlc.vscode-tailwindcss",
+        "github.vscode-github-actions"
       ]
     }
   },
