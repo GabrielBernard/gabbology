@@ -1,6 +1,8 @@
 use std::path::PathBuf;
 
-use axum::{http::Request, Router};
+use gabbology_server::TestTemplate;
+
+use axum::{http::Request, response::IntoResponse, routing::get, Router};
 use clap::Parser;
 use tower_http::{services::ServeDir, trace::TraceLayer};
 use tracing::Span;
@@ -43,7 +45,15 @@ async fn main() {
 }
 
 fn using_serve_dir_with_assets_fallback(assets: PathBuf) -> Router {
-    let assets_dir = ServeDir::new(assets.clone()).append_index_html_on_directories(true);
+    let assets_dir = ServeDir::new(assets.clone());
 
-    Router::new().fallback_service(assets_dir)
+    Router::new()
+        .route("/", get(test))
+        .fallback_service(assets_dir)
+}
+
+async fn test() -> impl IntoResponse {
+    let t = TestTemplate {};
+
+    askama_axum::IntoResponse::into_response(t)
 }

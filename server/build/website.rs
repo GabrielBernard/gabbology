@@ -34,16 +34,30 @@ use std::{path::Path, process::Command};
 pub fn bundle() {
     println!("cargo::rerun-if-changed=../website/assets");
     println!("cargo::rerun-if-changed=../website/src");
-    println!("cargo::rerun-if-changed=../website/index.html");
+    println!("cargo::rerun-if-changed=../website/templates");
     println!("cargo::rerun-if-changed=../website/package-lock.json");
     println!("cargo::rerun-if-changed=../website/postcss.config.js");
     println!("cargo::rerun-if-changed=../website/tailwind.config.js");
     println!("cargo::rerun-if-changed=../website/tsconfig.json");
     println!("cargo::rerun-if-changed=../website/vite.config.js");
 
-    Command::new("npm")
+    let npm_i = Command::new("npm")
+        .args(["install"])
+        .current_dir(Path::new("..").join("website"))
+        .output()
+        .expect("npm install");
+
+    if !npm_i.status.success() {
+        panic!("failed to install npm packages")
+    }
+
+    let npm_run = Command::new("npm")
         .args(["run", "build"])
         .current_dir(Path::new("..").join("website"))
-        .status()
-        .expect("should have compiled the website");
+        .output()
+        .expect("npm run build");
+
+    if !npm_run.status.success() {
+        panic!("faild to build website bundle")
+    }
 }

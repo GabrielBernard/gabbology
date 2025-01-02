@@ -7,6 +7,11 @@
     <title>gabbology</title>
   </head>
   <body class="my-10 flex min-h-screen flex-col items-center px-24 font-sans">
+    <div id="content" class="dark:text-gray-300">
+      {% block content %}
+        <p>Placeholder content</p>
+      {% endblock %}
+    </div>
     <div
       class="z-10 flex w-screen items-end justify-end gap-4 pr-6 sm:w-full sm:max-w-3xl sm:gap-12 sm:p-0 md:items-start md:justify-start"
     >

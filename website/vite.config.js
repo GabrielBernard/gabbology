@@ -1,8 +1,41 @@
+import { fileURLToPath } from "node:url";
+import { globSync } from "glob";
+import path from "node:path";
+
+const src = Object.fromEntries(
+  globSync("src/**/*.ts").map((file) => [
+    // This remove `src/` as well as the file extension from each
+    // file, so e.g. src/nested/foo.js becomes nested/foo
+    path.relative(
+      "src",
+      file.slice(0, file.length - path.extname(file).length),
+    ),
+    // This expands the relative paths to absolute paths, so e.g.
+    // src/nested/foo becomes /project/src/nested/foo.js
+    fileURLToPath(new URL(file, import.meta.url)),
+  ]),
+);
+
+const templates = Object.fromEntries(
+  globSync("templates/**/*.html").map((file) => [
+    // This remove `tempates/` as well as the file extension from each
+    // file, so e.g. templates/nested/foo.html becomes nested/foo
+    path.relative(
+      "templates",
+      file.slice(0, file.length - path.extname(file).length),
+    ),
+    // This expands the relative paths to absolute paths, so e.g.
+    // templates/nested/foo becomes /project/templates/nested/foo.js
+    fileURLToPath(new URL(file, import.meta.url)),
+  ]),
+);
+
 /** @type {import('vite').UserConfig} */
 export default {
   publicDir: "assets",
   build: {
     rollupOptions: {
+      input: { ...src, ...templates },
       // Suppress the warning:
       //
       // ```
