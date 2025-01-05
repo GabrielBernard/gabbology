@@ -1,0 +1,7 @@
+## What are you seeing?
+
+This page is served by a [Kubernetes](https://kubernetes.io/) cluster ([K3s](https://k3s.io/)) running on an [AWS EC2 instance](https://aws.amazon.com/ec2/). The certificate used by the cluster was issued by [Let's Encrypt](https://letsencrypt.org/) and is renewed automatically by [cert-manager](https://cert-manager.io/). The website is served by an application written in [Rust](https://www.rust-lang.org/) with the [axum](https://github.com/tokio-rs/axum) web framework. The application is packaged in a container image built automatically with [GitHub actions](https://docs.github.com/en/actions). The deployment on the cluster is managed by configurations hosted on [GitHub](https://github.com/GabrielBernard/gabbology) and synchronized with [Argo CD](https://argoproj.github.io/cd/).
+
+This project's goal is to learn how to use [cert-manager](https://cert-manager.io/) to secure all communication with TLS certificates. The [Traefik](https://doc.traefik.io/traefik/providers/kubernetes-ingress/) [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/), using a TLS certificate signed by [Let's Encrypt](https://letsencrypt.org/), makes the bridge between [Kubernetes](https://kubernetes.io/) and our web server.
+
+The project will grow and will serve as a showcase of my abilities and knowledge of [Kubernetes](https://kubernetes.io/). All the code used for this project is accessible on my [personal GitHub account](https://github.com/GabrielBernard/gabbology).

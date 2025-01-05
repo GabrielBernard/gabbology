@@ -6,8 +6,8 @@
     "vscode": {
       "extensions": [
         "rust-lang.rust-analyzer",
-        "bungcip.better-toml",
-        "serayuzgur.crates",
+        "tamasfe.even-better-toml",
+        "fill-labs.dependi",
         "mhutchie.git-graph",
         "eamodio.gitlens",
         "ms-azuretools.vscode-docker",
@@ -15,10 +15,14 @@
         "ms-kubernetes-tools.vscode-kubernetes-tools",
         "dbaeumer.vscode-eslint",
         "amatiasq.sort-imports",
-        "bradlc.vscode-tailwindcss"
+        "bradlc.vscode-tailwindcss",
+        "github.vscode-github-actions"
       ]
     }
   },
   "postAttachCommand": "chown $USER:$USER -R .",
-  "containerUser": "dev"
+  "containerUser": "dev",
+  "containerEnv": {
+    "GABBOLOGY_SERVER_ASSETS_PATH": "/workspaces/gabbology/website/dist"
+  }
 }
