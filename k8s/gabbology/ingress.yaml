@@ -10,13 +10,13 @@ spec:
         - "gabbology.com"
       secretName: local-gabbology-com-tls
   rules:
-  - host: "gabbology.com"
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: gabbology
-            port:
-              number: 80
+    - host: "gabbology.com"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: gabbology
+                port:
+                  number: 80

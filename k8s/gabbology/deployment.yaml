@@ -6,7 +6,7 @@ metadata:
   name: gabbology
   labels:
     app.kubernetes.io/name: gabbology
-    app.kubernetes.io/version: sha-cb95aaf
+    app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/component: server
     app.kubernetes.io/part-of: gabbology
 spec:
@@ -19,18 +19,18 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: gabbology
-        app.kubernetes.io/version: sha-cb95aaf
+        app.kubernetes.io/version: "1.0.0"
         app.kubernetes.io/component: server
         app.kubernetes.io/part-of: gabbology
     spec:
       containers:
-      - name: gabbology
-        image: ghcr.io/gabrielbernard/gabbology:sha-cb95aaf
-        resources:
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 8000
+        - name: gabbology
+          image: ghcr.io/gabrielbernard/gabbology:1.0.0
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8000
       imagePullSecrets:
-      - name: gabbology-gh-packages
+        - name: gabbology-gh-packages

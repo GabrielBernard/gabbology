@@ -8,5 +8,5 @@ spec:
     app.kubernetes.io/component: server
     app.kubernetes.io/part-of: gabbology
   ports:
-  - port: 80
-    targetPort: 8000
+    - port: 80
+      targetPort: 8000
