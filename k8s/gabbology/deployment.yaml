@@ -6,7 +6,7 @@ metadata:
   name: gabbology
   labels:
     app.kubernetes.io/name: gabbology
-    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/version: "1.0.1"
     app.kubernetes.io/component: server
     app.kubernetes.io/part-of: gabbology
 spec:
@@ -19,13 +19,13 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: gabbology
-        app.kubernetes.io/version: "1.0.0"
+        app.kubernetes.io/version: "1.0.1"
         app.kubernetes.io/component: server
         app.kubernetes.io/part-of: gabbology
     spec:
       containers:
         - name: gabbology
-          image: ghcr.io/gabrielbernard/gabbology:1.0.0
+          image: ghcr.io/gabrielbernard/gabbology:1.0.1
           resources:
             limits:
               memory: "512Mi"
